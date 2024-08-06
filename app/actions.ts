@@ -3,11 +3,11 @@
 export async function handleForm(prevState: any, formData: FormData) {
   if (formData.get("password") === "12345") {
     return {
-      message: "Logined!",
+      success: "Welcome Back!",
     };
   } else {
     return {
-      message: "wrong password",
+      error: "Wrong Password",
     };
   }
 }

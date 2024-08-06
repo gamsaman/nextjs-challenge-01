@@ -16,10 +16,25 @@ export default function Home() {
           <HiFire color="#f76b8a" size="70" />
         </div>
         <form action={action}>
-          <FormInput name="email" placeholder="Email" type="text" />
-          <FormInput name="username" placeholder="Username" type="text" />
-          <FormInput name="password" placeholder="Password" type="password" />
-          <FormButton />
+          <FormInput
+            name="email"
+            error={null}
+            type="text"
+            placeholder="Email"
+          />
+          <FormInput
+            name="username"
+            error={null}
+            type="text"
+            placeholder="Username"
+          />
+          <FormInput
+            name="password"
+            error={state?.error ?? null}
+            type="password"
+            placeholder="Password"
+          />
+          <FormButton success={state?.success ?? null} />
         </form>
       </div>
     </main>

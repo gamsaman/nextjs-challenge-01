@@ -4,12 +4,14 @@ import { IoKey } from "react-icons/io5";
 
 export default function FormInput({
   name,
-  placeholder,
   type,
+  placeholder,
+  error,
 }: {
   name: string;
-  placeholder: string;
   type: string;
+  placeholder: string;
+  error: string | null;
 }) {
   return (
     <>
@@ -31,12 +33,18 @@ export default function FormInput({
           />
         ) : null}
         <input
+          required
           type={type}
-          name={name}
           placeholder={placeholder}
-          className="bg-transparent border-gray-400 border w-[450px] h-14 rounded-full pl-10 focus:outline-none ring-2 focus:ring-4 transition ring-transparent focus:ring-[#f76b8a] ring-offset-4 ring-offset-gray-200"
+          name={name}
+          className={`bg-transparent ${
+            error
+              ? "border-red-400 focus:ring-red-400"
+              : "border-gray-400 focus:ring-gray-400"
+          } border w-[450px] h-14 rounded-full pl-10 focus:outline-none ring-2 focus:ring-4 transition ring-transparent ring-offset-4 ring-offset-gray-200`}
         />
       </div>
+      {error && <p className="text-sm text-red-400 mt-3 pl-2">{error}</p>}
     </>
   );
 }
