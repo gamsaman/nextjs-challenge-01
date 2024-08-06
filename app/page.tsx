@@ -19,7 +19,7 @@ export default function Home() {
           <FormInput
             name="email"
             error={null}
-            type="text"
+            type="email"
             placeholder="Email"
           />
           <FormInput
