@@ -2,7 +2,7 @@
 import { FaCheck } from "react-icons/fa";
 import { useFormStatus } from "react-dom";
 
-export default function FormButton({ success }: { success: string | null }) {
+export default function Button({ success }: { success: boolean }) {
   const { pending } = useFormStatus();
 
   return (
@@ -18,7 +18,7 @@ export default function FormButton({ success }: { success: string | null }) {
       {success && (
         <div className="bg-green-500 flex items-center gap-4 h-20 rounded-2xl mt-4 px-4 justify-center">
           <FaCheck />
-          <span>{success}</span>
+          <span>Welcome back!</span>
         </div>
       )}
     </>

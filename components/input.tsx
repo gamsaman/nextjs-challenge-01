@@ -1,18 +1,18 @@
 import { MdEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { IoKey } from "react-icons/io5";
+import { InputHTMLAttributes } from "react";
 
-export default function FormInput({
-  name,
-  type,
-  placeholder,
-  error,
-}: {
+interface InputProps {
   name: string;
-  type: string;
-  placeholder: string;
-  error: string | null;
-}) {
+  errors?: string[];
+}
+
+export default function Input({
+  name,
+  errors = [],
+  ...rest
+}: InputProps & InputHTMLAttributes<HTMLInputElement>) {
   return (
     <>
       <div className="relative mt-4">
@@ -33,18 +33,22 @@ export default function FormInput({
           />
         ) : null}
         <input
-          required
-          type={type}
-          placeholder={placeholder}
+          {...rest}
           name={name}
           className={`bg-transparent ${
-            error
+            errors.length > 0
               ? "border-red-400 focus:ring-red-400"
               : "border-gray-400 focus:ring-gray-400"
           } border w-[450px] h-14 rounded-full pl-10 focus:outline-none ring-2 focus:ring-4 transition ring-transparent ring-offset-4 ring-offset-gray-200`}
         />
       </div>
-      {error && <p className="text-sm text-red-400 mt-3 pl-2">{error}</p>}
+      <ul>
+        {errors.map((error, index) => (
+          <li key={index} className="text-sm text-red-400 pl-2 mt-2">
+            {error}
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
