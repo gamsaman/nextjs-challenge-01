@@ -4,10 +4,15 @@ import { useFormState } from "react-dom";
 import { HiFire } from "react-icons/hi2";
 import Input from "@/components/input";
 import Button from "@/components/button";
-import { LogIn } from "./actions";
+import { logIn } from "./actions";
+
+const initalState = {
+  success: false,
+  error: null,
+};
 
 export default function Home() {
-  const [state, action] = useFormState(LogIn, null);
+  const [state, action] = useFormState(logIn, initalState);
 
   return (
     <main className="bg-gray-200 h-screen flex justify-center items-center">
@@ -19,25 +24,25 @@ export default function Home() {
           <Input
             required
             name="email"
-            errors={state?.fieldErrors.email}
             type="email"
             placeholder="Email"
+            errors={state.error?.fieldErrors.email}
           />
           <Input
             required
             name="username"
-            errors={state?.fieldErrors.username}
             type="text"
             placeholder="Username"
+            errors={state.error?.fieldErrors.username}
           />
           <Input
             required
             name="password"
-            errors={state?.fieldErrors.password}
             type="password"
             placeholder="Password"
+            errors={state.error?.fieldErrors.password}
           />
-          <Button success={state === undefined} />
+          <Button success={state.success} />
         </form>
       </div>
     </main>

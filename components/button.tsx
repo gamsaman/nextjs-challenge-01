@@ -2,7 +2,7 @@
 import { FaCheck } from "react-icons/fa";
 import { useFormStatus } from "react-dom";
 
-export default function Button({ success }: { success: boolean }) {
+export default function Button({ success = false }: { success?: boolean }) {
   const { pending } = useFormStatus();
 
   return (

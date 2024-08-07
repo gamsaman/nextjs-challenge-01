@@ -20,7 +20,11 @@ const formSchema = z.object({
     ),
 });
 
-export async function LogIn(prevState: any, formData: FormData) {
+interface IprevState {
+  success: boolean;
+}
+
+export async function logIn(prevState: IprevState, formData: FormData) {
   const data = {
     email: formData.get("email"),
     username: formData.get("username"),
@@ -28,7 +32,14 @@ export async function LogIn(prevState: any, formData: FormData) {
   };
   const result = formSchema.safeParse(data);
   if (!result.success) {
-    return result.error.flatten();
+    return {
+      success: false,
+      error: result.error.flatten(),
+    };
   } else {
+    return {
+      success: true,
+      error: null,
+    };
   }
 }
