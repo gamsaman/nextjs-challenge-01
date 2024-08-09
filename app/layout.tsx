@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { HiFire } from "react-icons/hi2";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className}`}>
+        <main className="bg-gray-200 h-screen flex justify-center items-center">
+          <div>
+            <div className="flex justify-center mb-10">
+              <HiFire color="#f76b8a" size="70" />
+            </div>
+            {children}
+          </div>
+        </main>
+      </body>
     </html>
   );
 }
