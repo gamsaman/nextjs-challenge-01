@@ -12,7 +12,6 @@ interface TweetListProps {
 export default function TweetList({ initialTweets }: TweetListProps) {
   const [tweets, setTweets] = useState(initialTweets);
   const [page, setPage] = useState(1);
-  const [test, setTest] = useState(1);
   const onRightClick = async () => {
     const newTweets = await getTweets(page);
     if (newTweets.length !== 0) {
@@ -22,10 +21,10 @@ export default function TweetList({ initialTweets }: TweetListProps) {
   };
 
   const onLeftClick = async () => {
-    const newTweets = await getLessTweets(test);
-    if (newTweets.length !== 0) {
-      setTest((prev) => prev + 1);
-      setTweets((prev) => [...prev, ...newTweets]);
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+      tweets.pop();
+      setTweets([...tweets]);
     }
   };
 
