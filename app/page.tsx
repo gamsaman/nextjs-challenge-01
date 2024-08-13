@@ -1,21 +1,32 @@
-import { useFormState } from "react-dom";
 import Link from "next/link";
+import db from "@/lib/db";
+import TweetList from "@/components/tweet-list";
+import { Prisma } from "@prisma/client";
 
-export default function Home() {
+async function getInitialTweets() {
+  const tweets = await db.tweet.findMany({
+    select: {
+      id: true,
+      tweet: true,
+      created_at: true,
+    },
+    take: 1,
+    orderBy: {
+      created_at: "desc",
+    },
+  });
+
+  return tweets;
+}
+
+export type InitialTweets = Prisma.PromiseReturnType<typeof getInitialTweets>;
+
+export default async function Home() {
+  const initialTweets = await getInitialTweets();
+
   return (
     <main>
-      <div className="text-center">
-        <p className="pb-2">계정이 없으신가요?</p>
-        <Link href="/create-account" className="text-blue-500">
-          계정 만들기&rarr;
-        </Link>
-      </div>
-      <div className="text-center mt-6">
-        <p className="pb-2">계정이 있으신가요?</p>
-        <Link href="/log-in" className="text-blue-500">
-          로그인하기&rarr;
-        </Link>
-      </div>
+      <TweetList initialTweets={initialTweets} />
     </main>
   );
 }
