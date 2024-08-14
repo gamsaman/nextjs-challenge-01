@@ -39,7 +39,7 @@ export default function Input({
             errors.length > 0
               ? "border-red-400 focus:ring-red-400"
               : "border-gray-400 focus:ring-gray-400"
-          } border w-[450px] h-14 rounded-full pl-10 focus:outline-none ring-2 focus:ring-4 transition ring-transparent ring-offset-4 ring-offset-gray-200`}
+          } border w-full h-14 rounded-full pl-10 focus:outline-none ring-2 focus:ring-4 transition ring-transparent ring-offset-4 ring-offset-gray-200`}
         />
       </div>
       <ul>

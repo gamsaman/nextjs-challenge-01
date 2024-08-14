@@ -11,7 +11,7 @@ export default function LogIn() {
   const [state, action] = useFormState(logIn, null);
 
   return (
-    <form action={action}>
+    <form action={action} className="w-[450px]">
       <Input
         required
         name="email"

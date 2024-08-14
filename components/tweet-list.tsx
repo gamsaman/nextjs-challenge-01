@@ -3,7 +3,7 @@
 import { InitialTweets } from "@/app/page";
 import { useState } from "react";
 import Tweet from "./tweet";
-import { getTweets, getLessTweets } from "@/app/actions";
+import { getTweets } from "@/app/actions";
 
 interface TweetListProps {
   initialTweets: InitialTweets;
@@ -12,6 +12,7 @@ interface TweetListProps {
 export default function TweetList({ initialTweets }: TweetListProps) {
   const [tweets, setTweets] = useState(initialTweets);
   const [page, setPage] = useState(1);
+
   const onRightClick = async () => {
     const newTweets = await getTweets(page);
     if (newTweets.length !== 0) {
@@ -19,7 +20,6 @@ export default function TweetList({ initialTweets }: TweetListProps) {
       setTweets((prev) => [...prev, ...newTweets]);
     }
   };
-
   const onLeftClick = async () => {
     if (page > 1) {
       setPage((prev) => prev - 1);
@@ -30,7 +30,7 @@ export default function TweetList({ initialTweets }: TweetListProps) {
 
   return (
     <>
-      <div className="max-w-5xl">
+      <div className="w-[500px]">
         {tweets.map((tweet) => (
           <Tweet key={tweet.id} {...tweet} />
         ))}

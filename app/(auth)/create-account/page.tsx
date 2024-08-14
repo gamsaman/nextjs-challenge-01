@@ -10,7 +10,7 @@ export default function CreateAccount() {
   const [state, action] = useFormState(createAccount, null);
 
   return (
-    <form action={action}>
+    <form action={action} className="w-[450px]">
       <Input
         required
         name="email"
